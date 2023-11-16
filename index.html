@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        //create a function to generate computer choice
+        function computerSelection() {
+            // generate a random number from 1 to 3
+            let number = Math.ceil(Math.random() * 3);
+            let choice;
+            // if-else to output rock, paper or scissors based on the number chosen
+            if(number === 1){
+               choice = "Rock"
+            }
+            else if(number === 2){
+               choice = "Paper"
+            }
+            else if(number === 3){
+               choice = "Scissors"
+            }
+            return choice;
+        }
+        //create a function to generate player choice 
+        function playerSelection() {
+            //input a number from user from 1 to 3
+            let number = parseInt(prompt("Enter a number (1 = Rock, 2 = Paper, 3 = Scissors)"));
+            let choice;
+            // if-else to output rock, paper or scissors based on the number chosen
+            if(number === 1){
+               choice = "Rock"
+            }
+            else if(number === 2){
+               choice = "Paper"
+            }
+            else if(number === 3){
+               choice = "Scissors"
+            }
+            return choice;
+        }
+        // create a function to generate one round of a game
+        function gameRound() {
+            // create variables to access the choices of player and computer
+            let playerChoice = playerSelection();
+            let computerChoice = computerSelection();
+            let winner;
+            if(playerChoice === computerChoice){
+                console.log("Player chose = " + playerChoice + "  " + "Computer chose = " + computerChoice + "  " + "It's a tie");
+                winner = "None";
+            }
+            else if(playerChoice === "Paper" && computerChoice === "Rock" || playerChoice === "Rock" && computerChoice === "Scissors" || playerChoice === "Scissors" && computerChoice === "Paper"){
+                console.log("Player chose = " + playerChoice + "  " + "Computer chose = " + computerChoice + "  " + "Player wins this round");
+                winner = "Player"
+            }
+            else if(computerChoice === "Paper" && playerChoice === "Rock" || computerChoice === "Rock" && playerChoice === "Scissors" || computerChoice === "Scissors" && playerChoice === "Paper"){
+                console.log("Player chose = " + playerChoice + "  " + "Computer chose = " + computerChoice + "  " + "Computer wins this round");
+                winner = "Computer"
+            }
+            return winner;
+        }
+        function game() {
+            let countPlayer = 0;
+            let countcomputer = 0;
+            for(let i = 1; i<= 5; i++){
+                let ans = gameRound();
+                if(ans == "Player"){
+                    countPlayer++;
+                }
+                else if(ans === "Computer"){
+                    countcomputer++
+                }
+            }
+            if(countPlayer > countcomputer){
+                console.log("Player wins");
+            }
+            else if(countPlayer < countcomputer) {
+                console.log("Computer wins");
+            }
+            else {
+                console.log("Tie");
+            }
+        }
+        game();
+    </script>
+</body>
+</html>
